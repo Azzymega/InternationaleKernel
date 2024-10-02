@@ -178,7 +178,7 @@ Void * GaAllocateMemory(const UIntPtr size) {
 
 Void * GaFreeMemory(Void *ptr) {
     HalEnterMonitor(&GaGlobalSynchronizationMonitor);
-    FwStub("GaFreeMemory is not implemented!");
+    //TODO: IMPLEMENT FwStub("GaFreeMemory is not implemented!");
     HalExitMonitor(&GaGlobalSynchronizationMonitor);
     return Null;
 }

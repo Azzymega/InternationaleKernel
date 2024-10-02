@@ -1,0 +1,62 @@
+#pragma once
+#include <inuos.h>
+
+/**
+ * ATA PIO module for loading from disk. We can load from primary bus only!
+ */
+
+#define PRIMARY_ATA_IO_BASE 0x1F0
+#define PRIMARY_ATA_CONTROL_BASE 0x3F6
+
+#define SECONDARY_ATA_IO_BASE 0x170
+#define SECONDARY_ATA_CONTROL_BASE 0x177
+
+#define PRIMARY_ATA_DATA PRIMARY_ATA_IO_BASE+0
+#define PRIMARY_ATA_ERROR PRIMARY_ATA_IO_BASE+1
+#define PRIMARY_ATA_FEATURES PRIMARY_ATA_IO_BASE+1
+#define PRIMARY_ATA_SCR PRIMARY_ATA_IO_BASE+2
+#define PRIMARY_ATA_LBALO PRIMARY_ATA_IO_BASE+3
+#define PRIMARY_ATA_LBAMID PRIMARY_ATA_IO_BASE+4
+#define PRIMARY_ATA_LBAHI PRIMARY_ATA_IO_BASE+5
+#define PRIMARY_ATA_DRIVE PRIMARY_ATA_IO_BASE+6
+#define PRIMARY_ATA_STATUS PRIMARY_ATA_IO_BASE+7
+#define PRIMARY_ATA_COMMAND PRIMARY_ATA_IO_BASE+7
+
+#define SECONDARY_ATA_DATA SECONDARY_ATA_IO_BASE+0
+#define SECONDARY_ATA_ERROR SECONDARY_ATA_IO_BASE+1
+#define SECONDARY_ATA_FEATURES SECONDARY_ATA_IO_BASE+1
+#define SECONDARY_ATA_SCR SECONDARY_ATA_IO_BASE+2
+#define SECONDARY_ATA_LBALO SECONDARY_ATA_IO_BASE+3
+#define SECONDARY_ATA_LBAMID SECONDARY_ATA_IO_BASE+4
+#define SECONDARY_ATA_LBAHI SECONDARY_ATA_IO_BASE+5
+#define SECONDARY_ATA_DRIVE SECONDARY_ATA_IO_BASE+6
+#define SECONDARY_ATA_STATUS SECONDARY_ATA_IO_BASE+7
+#define SECONDARY_ATA_COMMAND SECONDARY_ATA_IO_BASE+7
+
+#define PRIMARY_ATA_CR PRIMARY_ATA_CONTROL_BASE
+#define SECONDARY_ATA_CR SECONDARY_ATA_CONTROL_BASE
+
+#define ATA_COMMAND_IDENTIFY 0xEC
+#define ATA_COMMAND_FLUSH_CACHE 0xE7
+#define ATA_COMMAND_READ_EXT 0x24
+#define ATA_COMMAND_READ 0x20
+
+#define ATA_PACKET 512
+
+Void AtaReset();
+Void AtaSelectDrive(Byte driveIndex);
+Void AtaIdentify(Byte driveIndex);
+Void AtaSetCount(UInt16 count);
+Void AtaIoWait();
+Void AtaWait();
+Void AtaIn(UByte* buffer);
+Void AtaDisableIrq();
+Void AtaLocate();
+Void AtaSendCommand(UByte command);
+Void AtaSetDrive();
+Void AtaFlushCache();
+Void AtaConfigureLoad(const UInt64 lba, const UInt16 sectorCount);
+Void AtaInitialize(Byte driveIndex);
+
+Void AtaReadSector(const UInt64 lba, Void *buffer);
+Void AtaRead(const UIntPtr sectorCount, const UInt64 lba, Void *buffer);

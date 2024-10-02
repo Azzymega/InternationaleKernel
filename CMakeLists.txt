@@ -9,6 +9,7 @@ include_directories(include)
 add_subdirectory(inuoskrnl)
 add_subdirectory(inuldr)
 add_subdirectory(inuhal)
+add_subdirectory(inuenv)
 add_subdirectory(inufw)
 
 target_link_libraries(inuldr PRIVATE inufw)

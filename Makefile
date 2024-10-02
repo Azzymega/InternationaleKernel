@@ -1,3 +1,3 @@
 
 Payload:
-	tar -cvf payload.tar cmake-build-debug-clang
+	tar -cvf payload.tar cmake-build-debug-clang loader.toml
